@@ -1,4 +1,4 @@
-/* .catagory{
+.catagory{
     height: 350px;
     width: 350px;
     background-color: white;
@@ -25,15 +25,22 @@
     color: rgb(9,132,209);
 }
 
-.Category__container{
+/* .Category__container{
     position: relative;
     margin-top: -10%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     place-items: center;
 } */
+.category__container {
+    position: relative;
+    margin-top: -10%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+}
 
-.category {
+/* .category {
     height: 350px;
     width: 350px;
     background-color: white;
@@ -70,4 +77,4 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     place-items: center;
-}
+} */

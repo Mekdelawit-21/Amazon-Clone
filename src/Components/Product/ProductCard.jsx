@@ -6,7 +6,7 @@ import classes from './Product.module.css'
 function ProductCard({product}) {
     const {image,title,id,rating,price} = product;
   return (
-    <div className={`${classes.card__container}`}>
+    <div className={`${classes.card__container}`} key={id}>
         <a href="">
             <img src={image} alt="" />
         </a>
