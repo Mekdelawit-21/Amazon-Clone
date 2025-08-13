@@ -81,7 +81,7 @@
     border: none;
     cursor: pointer;
     background-color: var(--primary-color);
-    width: calc(100% - 20px); /* account for padding */
+    width: calc(100% - 20px); 
     margin: 10px 0;
     border-radius: 30px;
     position: absolute;
@@ -106,4 +106,44 @@
     margin: 100px auto;
     gap: 50px;
     padding: 0 20px;
+}
+
+.products_container section{
+    margin: 0 auto;
+} 
+
+
+.product_flexed{
+    box-shadow: none;
+    height: auto;
+    display: flex;
+    gap: 50px;
+    width: 100%;
+}
+
+.product_flexed h3{
+    padding: 20px 0px;
+}
+
+.product_flexed .button{
+    display: block;
+    position: static;
+    width: 150px;
+    margin-right: 40px;
+}
+
+.product_flexed{
+    height: 50vh;
+}
+
+.product_flexed img{
+    width: 300px !important;
+    height: auto;
+}
+
+@media screen and (max-width: 768px){
+    .product_flexed{
+        display: flex;
+        flex-direction: column;
+    }
 }

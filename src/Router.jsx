@@ -6,44 +6,45 @@ import Payment from './pages/Payment/Payment';
 import Orders from './pages/Orders/Orders';
 import Cart from './pages/Cart/Cart';
 import Results from './pages/Results/Results';
-
-// function Routing() {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/" element={<Langing />} />
-//         <Route path="/auth" element={<SignIn/>} />
-//         <Route path="/payments" element={<Payment />} />
-//         <Route path="/orders" element={<Orders />} />
-//         <Route path="/category/:categoryName" element={<Results/>} />
-//         <Route path="/cart" element={<Cart />} />
-//       </Routes>
-//     </Router>
-//   );
-// }
-
-// export default Routing
+import ProductDetail from './pages/ProductDetail/ProductDetail'
 
 function Routing() {
   return (
-    <Router
-      future={{
-        v7_startTransition: true, // Added future flags for React Router v7
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <Router>
       <Routes>
         <Route path="/" element={<Langing />} />
         <Route path="/auth" element={<SignIn />} />
         <Route path="/payments" element={<Payment />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/category/:categoryName" element={<Results />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
-
-       
       </Routes>
     </Router>
   );
 }
 
-export default Routing;
+export default Routing
+
+// function Routing() {
+//   return (
+//     <Router
+//       future={{
+//         v7_startTransition: true, // Added future flags for React Router v7
+//         v7_relativeSplatPath: true,
+//       }}
+//     >
+//       <Routes>
+//         <Route path="/" element={<Langing />} />
+//         <Route path="/auth" element={<SignIn />} />
+//         <Route path="/payments" element={<Payment />} />
+//         <Route path="/orders" element={<Orders />} />
+//         <Route path="/category/:categoryName" element={<Results />} />
+//         <Route path="/products/:productId" element={<ProductDetail />} />
+//         <Route path="/cart" element={<Cart />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// export default Routing;
