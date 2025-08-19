@@ -2,7 +2,8 @@
 import { Type } from "./action.type";
 
 export const initialState = {
-    basket:[]
+    basket:[],
+    user: null
 }
 
 export const reducer =(state,action)=>{
@@ -17,7 +18,7 @@ export const reducer =(state,action)=>{
             }
            }else{
              const updatedBasket = state.basket.map((item)=>{
-              return item.id === action.item.id? {...item,amount:item.amount + 1}: item
+              return  item.id === action.item.id? {...item,amount:item.amount + 1}: item
              })
               return {
                 ...state,
@@ -40,6 +41,12 @@ export const reducer =(state,action)=>{
                 ...state,
                 basket:newBasket
               }
+
+              case Type.SET_USER:
+                return{
+                  ...state,
+                  user: action.user
+                }
 
                 default:
                     return state;
