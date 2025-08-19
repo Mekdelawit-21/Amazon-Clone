@@ -1,8 +1,9 @@
 import React, { useState,useContext } from 'react'
 import classes from './Signup.module.css'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import {auth} from '../../Utility/firebase';
 import {signInWithEmailAndPassword,createUserWithEmailAndPassword} from 'firebase/auth';
+import { ClipLoader} from "react-spinners";
 import { DataProvider} from '../../Components/DataProvider/DataProvider'
 
 
@@ -11,8 +12,13 @@ function Auth() {
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
      const [error, setError] = useState("");
+     const [loading, setLoading] = useState({
+      singIn: false,
+      signUp: false
+     })
 
      const [{user},dispatch] = useContext(DataProvider)
+     const navigate = useNavigate()
 
         console.log(user);
 
@@ -22,27 +28,37 @@ function Auth() {
     if(e.target.name == 'singin'){
 
       //firebase auth
-      signInWithEmailAndPassword(auth, email, password).then((userInfo) =>{
+      setLoading({ ...loading, singIn: true})
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userInfo) =>{
         
         dispatch({
           type: Type.SET_USER,
-          user: userInfo.user
+          user: userInfo.user,
         })
+        setLoading({ ...loading, signIn:false})
+        navigate('/')
       })
-      .catch((error) =>{
-        console.log(err);
+      .catch((err) =>{
+        setError(err.message);
+         setLoading({ ...loading, signIn: false });
       })
 
     }else{
-       createUserWithEmailAndPassword(auth, email, password).then((userInfo) =>{
+      setLoading({ ...loading, signUp:true})
+       createUserWithEmailAndPassword(auth, email, password)
+       .then((userInfo) =>{
         
         dispatch({
           type: Type.SET_USER,
           user: userInfo.user,
         });
+        setLoading({ ...loading, signUp: false });
+        navigate('/')
       })
       .catch((error) =>{
-        console.log(err);
+         setError(err.message);
+         setLoading({ ...loading, signUp: false });
       })
 
     }
@@ -52,7 +68,7 @@ function Auth() {
   return (
     <section className={classes.login}>
       {/*logo*/}
-      <Link>
+      <Link to="/">
         <img
           src="https://commons.wikimedia.org/wiki/File:Amazon_logo.svg"
           alt=""
@@ -85,10 +101,15 @@ function Auth() {
           </div>
           <button
             type="submit"
-            onClick={authHandled} name='signin'
+            onClick={authHandled}
+            name="signin"
             className={classes.login_sigInButton}
           >
-            Sign In
+            {loading.singIn ? (
+              <ClipLoader color="#000" size={15}></ClipLoader>
+            ) : (
+              "Sign In"
+            )}
           </button>
         </form>
 
@@ -102,11 +123,19 @@ function Auth() {
         {/* create account btn */}
         <button
           type="submit"
-          onClick={authHandled} name='signup'
+          name="signup"
+          onClick={authHandled}
           className={classes.login_registerButton}
         >
-          Create Your Amazon Account
+          {loading.signUp ? (
+            <ClipLoader color="#000" size={15}></ClipLoader>
+          ) : (
+            " Create Your Amazon Account"
+          )}
         </button>
+        {error && (
+          <small style={{ paddingTop: "5px", color: "red" }}>{error}</small>
+        )}
       </div>
     </section>
   );
