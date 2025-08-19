@@ -5,15 +5,15 @@ import Category from '../../Components/Category/Category'
 import Product from '../../Components/Product/Product'
 
 
-function Langing() {
+function Landing() {
   return (
     <LayOut>
       <Carousel/>
       <Category/>
       <Product/>
-      </LayOut>
+    </LayOut>
     
   )
 }
 
-export default Langing
+export default Landing
