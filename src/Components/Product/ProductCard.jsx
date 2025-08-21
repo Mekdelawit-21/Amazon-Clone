@@ -23,9 +23,7 @@ function ProductCard({ product, flex, renderDesc,renderAdd }) {
   return (
     <div
       className={`${classes.card__container} ${
-        flex ? classes.product_flexed : ""
-      }`}
-    >
+        flex?classes.product_flexed : ''}`}>
       <Link to={`/products/${id}`}>
         <img src={image} alt="" className={classes.img_container} />
       </Link>
@@ -45,11 +43,10 @@ function ProductCard({ product, flex, renderDesc,renderAdd }) {
           <CurrencyFormat amount={price} />
         </div>
 
-        {renderAdd && (
-          <button className={classes.button} onClick={addToCart}>
+        {renderAdd &&   <button className={classes.button} onClick={addToCart}>
             add to cart
           </button>
-        )}
+        }
       </div>
     </div>
   );

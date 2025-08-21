@@ -18,7 +18,7 @@ function Cart() {
 
   const increment =(item)=>{
     dispatch({
-      type:Type.ADD_TO_CART,
+      type:Type.ADD_TO_BASKET,
       item
     })
   }
